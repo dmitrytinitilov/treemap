@@ -18,5 +18,24 @@ module.exports = function(app, db) {
 	
 	})
 
+	app.get('/api/add_tree/:lat/:lng',async function(req,res){
+		
+		try {
+
+			var lat = req.params.lat;
+			var lng = req.params.lng;
+
+			var trees = db.collection("trees");
+
+			await loginpass.insertOne({lat:lat,lng:lng})
+
+			res.end('template');
+		} catch(e) {
+			console.log(e);
+			res.end('error');
+		}
+	
+	})
+
 	return app
 }
